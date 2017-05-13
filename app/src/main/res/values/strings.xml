@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Naumen Test</string>
+    <string name="previous_button_text">previous</string>
+    <string name="next_button_text">next</string>
+</resources>
