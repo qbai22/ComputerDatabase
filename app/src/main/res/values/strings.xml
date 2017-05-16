@@ -4,4 +4,7 @@
     <string name="next_button_text">next</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="error_toast">Возникла ошибка</string>
+    <string name="list_toolbat_title">Computers Database</string>
+    <string name="current_page_text">%1$d of</string>
+    <string name="total_pages_text"> %1$d pages</string>
 </resources>

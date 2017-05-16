@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -35,8 +36,14 @@ public class ComputerListActivity extends AppCompatActivity
     @BindView(R.id.next_button)
     Button mNextButton;
 
-    @BindView(R.id.pages_text_view)
-    TextView mPagesTextView;
+    @BindView(R.id.current_page_text_view)
+    TextView mCurrentPageTextView;
+
+    @BindView(R.id.pages_total_text_view)
+    TextView mTotalPagesTextView;
+
+    @BindView(R.id.list_toolbar)
+    Toolbar mToolbar;
 
     @BindView(R.id.computers_progressBar)
     ProgressBar mProgressBar;
@@ -52,6 +59,12 @@ public class ComputerListActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_computer_list);
         ButterKnife.bind(this);
+
+        mToolbar.setTitle(R.string.list_toolbat_title);
+        setSupportActionBar(mToolbar);
+
+        mPreviousButton.setOnClickListener(b -> previousButtonClicked());
+        mNextButton.setOnClickListener(b -> nextButtonClicked());
 
         mComputersRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new ComputersListAdapter(new ArrayList<>());
@@ -96,12 +109,19 @@ public class ComputerListActivity extends AppCompatActivity
 
     @Override
     public void nextButtonClicked() {
-
+        mPresenter.onNext();
     }
 
     @Override
     public void previousButtonClicked() {
-
+        mPresenter.onPrevious();
     }
+
+    @Override
+    public void updatePages(int currentPage, int totalPages) {
+        mCurrentPageTextView.setText(getString(R.string.current_page_text, currentPage));
+        mTotalPagesTextView.setText(getString(R.string.total_pages_text, totalPages));
+    }
+
 
 }

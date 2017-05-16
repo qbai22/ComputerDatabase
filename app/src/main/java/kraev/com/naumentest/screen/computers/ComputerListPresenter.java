@@ -24,8 +24,32 @@ public class ComputerListPresenter {
     }
 
     public void init() {
-
         int page = mRepository.getCurrentPage();
+        int total = mRepository.getTotalPages();
+        mView.updatePages(page, total);
+        loadList(page);
+    }
+
+    public void onNext(){
+        int page = mRepository.getCurrentPage();
+        int total = mRepository.getTotalPages();
+        page++;
+        mRepository.setCurrentPage(page);
+        mView.updatePages(page, total);
+        loadList(page);
+    }
+
+    public void onPrevious(){
+        int page = mRepository.getCurrentPage();
+        int total = mRepository.getTotalPages();
+        if(page == 0) return;
+        page--;
+        mRepository.setCurrentPage(page);
+        mView.updatePages(page, total);
+        loadList(page);
+    }
+
+    private void loadList(int page){
         mRepository.computersList(page)
                 .doOnSubscribe(disposable -> mView.showProgress())
                 .doOnTerminate(mView::hideProgress)
@@ -35,16 +59,6 @@ public class ComputerListPresenter {
                 })
                 .map(ComputersResponse::getComputers)
                 .subscribe(mView::showComputers, throwable -> mView.showError());
-
-    }
-
-    public void onNext(){
-        int page = mRepository.getCurrentPage();
-        page++;
-        mRepository.setCurrentPage(page);
-
-
-
     }
 
     public void itemClicked(@NonNull Computer computer) {
@@ -55,4 +69,5 @@ public class ComputerListPresenter {
         if (totalItems % 10 == 0) return totalItems / 10;
         else return (totalItems / 10) + 1;
     }
+
 }

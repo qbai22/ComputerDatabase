@@ -20,4 +20,6 @@ public interface ComputerListView extends ProgressView{
     void nextButtonClicked();
 
     void previousButtonClicked();
+
+    void updatePages(int currentPage, int totalPages);
 }

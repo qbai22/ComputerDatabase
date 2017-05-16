@@ -4,9 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="kraev.com.naumentest.screen.computers.ComputerListActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/list_toolbar"
+        android:title="@string/list_toolbat_title"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:titleTextColor="@android:color/white">
+    </android.support.v7.widget.Toolbar>
+
     <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/list_toolbar"
         android:id="@+id/computers_list_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,6 +26,7 @@
     </android.support.v7.widget.RecyclerView>
 
     <LinearLayout
+        android:gravity="center"
         android:id="@+id/bottom_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,13 +41,30 @@
             android:layout_weight="1"
             android:text="@string/previous_button_text"/>
 
-        <TextView
-            android:id="@+id/pages_text_view"
+        <LinearLayout
+            android:gravity="center"
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            tools:text="Page 1 of 123"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/current_page_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                tools:text="Page 1 "/>
+
+            <TextView
+                android:id="@+id/pages_total_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                tools:text="of 123"/>
+
+
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/next_button"

@@ -74,5 +74,7 @@ dependencies {
     // dependencies for local unit tests
     testCompile "junit:junit:$rootProject.ext.junitVersion"
 
+    compile 'com.ms-square:expandableTextView:0.1.4'
+
 
 }
