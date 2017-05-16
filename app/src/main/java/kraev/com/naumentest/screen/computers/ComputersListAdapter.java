@@ -53,7 +53,7 @@ public class ComputersListAdapter extends RecyclerView.Adapter<ComputerHolder> {
         notifyDataSetChanged();
     }
 
-    public Computer getItem(int position){
+    public Computer getItem(int position) {
         return mItems.get(position);
     }
 
@@ -66,8 +66,7 @@ public class ComputersListAdapter extends RecyclerView.Adapter<ComputerHolder> {
     @Override
     public void onBindViewHolder(ComputerHolder holder, int position) {
         Computer item = mItems.get(position);
-        holder.mNameTextView.setText(item.getName());
-        holder.mCompanyTextView.setText(item.getCompany().getName());
+        holder.bind(item);
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(mIternalClickListener);
     }
@@ -77,7 +76,7 @@ public class ComputersListAdapter extends RecyclerView.Adapter<ComputerHolder> {
         return mItems.size();
     }
 
-    public void setOnClickListener(OnComputerClickListener listener){
+    public void setOnClickListener(OnComputerClickListener listener) {
         mOnComputerClickListener = listener;
     }
 

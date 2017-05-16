@@ -6,7 +6,9 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.2'
-
+        classpath 'me.tatarka:gradle-retrolambda:3.3.0-beta4'
+        classpath 'me.tatarka.retrolambda.projectlombok:lombok.ast:0.2.3.a2'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -15,6 +17,7 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        maven { url "https://jitpack.io" }
     }
 }
 
@@ -37,6 +40,9 @@ ext {
     rxandroidVersion = '2.0.1'
     butterKnifeVersion = '8.5.1'
     retrofitVersion = '2.2.0'
+    retrofitRxJavaAdapterVersion = '2.3.0'
+    glideVersion = '3.8.0'
+
 
     //Test dependencies
     junitVersion = '4.12'

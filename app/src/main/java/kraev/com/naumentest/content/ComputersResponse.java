@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * Created by qbai on 10.05.2017.
+ * Created by Vladimir Kraev
  */
 
 public class ComputersResponse {
@@ -13,7 +13,8 @@ public class ComputersResponse {
     @SerializedName("items")
     List<Computer> mComputers;
     int page;
-    int total;
+    @SerializedName("total")
+    int totalItems;
 
     public List<Computer> getComputers() {
         return mComputers;
@@ -31,11 +32,11 @@ public class ComputersResponse {
         this.page = page;
     }
 
-    public int getTotal() {
-        return total;
+    public int getTotalItems() {
+        return totalItems;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
+    public void setTotalItems(int totalItems) {
+        this.totalItems = totalItems;
     }
 }

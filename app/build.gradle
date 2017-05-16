@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'android-apt'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -14,9 +15,6 @@ android {
 
         buildConfigField "String", "API_ENDPOINT", '"http://testwork.nsd.naumen.ru/rest/"'
 
-        jackOptions {
-            enabled true
-        }
     }
 
     buildTypes {
@@ -50,7 +48,7 @@ dependencies {
 
     // dependency injection
     compile "com.google.dagger:dagger:$rootProject.dagger2Version"
-    provided "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
+    apt "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
     provided 'javax.annotation:jsr250-api:1.0'
     compile 'javax.inject:javax.inject:1'
 
@@ -60,16 +58,21 @@ dependencies {
 
     // code generator for views
     compile "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
+    apt "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
 
     // retrofit
     compile "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
-    compile "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitRxJavaAdapterVersion"
 
     // parser
     compile "com.google.code.gson:gson:$rootProject.gsonVersion"
 
+    // work with images
+    compile "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+
     // dependencies for local unit tests
     testCompile "junit:junit:$rootProject.ext.junitVersion"
+
+
 }

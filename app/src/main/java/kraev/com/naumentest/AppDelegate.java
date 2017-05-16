@@ -20,7 +20,7 @@ public class AppDelegate extends Application {
         super.onCreate();
 
         sAppComponent = DaggerAppComponent.builder()
-                .dataModule(new DataModule())
+                .dataModule(new DataModule(this))
                 .build();
 
     }

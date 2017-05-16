@@ -3,18 +3,21 @@ package kraev.com.naumentest.screen.computers;
 import java.util.List;
 
 import kraev.com.naumentest.content.Computer;
+import kraev.com.naumentest.screen.general.ProgressView;
 
 /**
- * Created by qbai on 13.05.2017.
+ * Created by Vladimir Kraev
  */
 
-public interface ComputerListView {
+public interface ComputerListView extends ProgressView{
 
     void showComputers(List<Computer> computers);
 
     void showError();
 
-    void showProgress();
+    void navigateToInfoActivity(int id);
 
-    void hideProgress();
+    void nextButtonClicked();
+
+    void previousButtonClicked();
 }

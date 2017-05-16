@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ import kraev.com.naumentest.AppDelegate;
 import kraev.com.naumentest.R;
 import kraev.com.naumentest.content.Computer;
 import kraev.com.naumentest.repository.ComputersRepository;
+import kraev.com.naumentest.screen.info.InfoActivity;
 
 public class ComputerListActivity extends AppCompatActivity
         implements ComputerListView, ComputersListAdapter.OnComputerClickListener {
@@ -36,7 +38,7 @@ public class ComputerListActivity extends AppCompatActivity
     @BindView(R.id.pages_text_view)
     TextView mPagesTextView;
 
-    @BindView(R.id.progressBar)
+    @BindView(R.id.computers_progressBar)
     ProgressBar mProgressBar;
 
     @Inject
@@ -53,6 +55,7 @@ public class ComputerListActivity extends AppCompatActivity
 
         mComputersRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new ComputersListAdapter(new ArrayList<>());
+        mAdapter.setOnClickListener(this);
         mComputersRecyclerView.setAdapter(mAdapter);
 
         AppDelegate.getAppComponent().injectComputerListActivity(this);
@@ -68,21 +71,37 @@ public class ComputerListActivity extends AppCompatActivity
 
     @Override
     public void showError() {
-
+        Toast.makeText(this, R.string.error_toast, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showProgress() {
-
+        mProgressBar.setVisibility(ProgressBar.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
+        mProgressBar.setVisibility(ProgressBar.GONE);
+    }
 
+    @Override
+    public void navigateToInfoActivity(int id) {
+        InfoActivity.start(this, id);
     }
 
     @Override
     public void onItemClick(@NonNull Computer computer) {
+        mPresenter.itemClicked(computer);
+    }
+
+    @Override
+    public void nextButtonClicked() {
 
     }
+
+    @Override
+    public void previousButtonClicked() {
+
+    }
+
 }

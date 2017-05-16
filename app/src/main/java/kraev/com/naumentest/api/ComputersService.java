@@ -1,5 +1,7 @@
 package kraev.com.naumentest.api;
 
+import java.util.List;
+
 import io.reactivex.Observable;
 import kraev.com.naumentest.content.ComputersResponse;
 import kraev.com.naumentest.content.InfoResponse;
@@ -10,7 +12,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
- * Created by qbai on 10.05.2017.
+ * Created by Vladimir Kraev
  */
 
 public interface ComputersService {
@@ -22,6 +24,6 @@ public interface ComputersService {
     Observable<InfoResponse> getComputerInfo(@Path("id") int id);
 
     @GET("computers/{id}/similar")
-    Observable<SimilarModelsResponse> getSimilarModels(@Path("id") int id);
+    Observable<List<SimilarModelsResponse>> getSimilarModels(@Path("id") int id);
 
 }

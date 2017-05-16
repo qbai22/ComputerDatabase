@@ -6,6 +6,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import kraev.com.naumentest.screen.computers.ComputerListActivity;
+import kraev.com.naumentest.screen.info.InfoActivity;
 
 /**
  * Created by Vladimir Kraev
@@ -17,4 +18,5 @@ public interface AppComponent {
 
     void injectComputerListActivity(ComputerListActivity computerListActivity);
 
+    void injectInfoActivity(InfoActivity infoActivity);
 }

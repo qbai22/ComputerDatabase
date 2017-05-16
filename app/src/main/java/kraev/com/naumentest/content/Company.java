@@ -1,7 +1,7 @@
 package kraev.com.naumentest.content;
 
 /**
- * Created by qbai on 10.05.2017.
+ * Created by Vladimir Kraev
  */
 
 public class Company {

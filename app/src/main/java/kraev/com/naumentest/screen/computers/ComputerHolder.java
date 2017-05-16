@@ -11,7 +11,7 @@ import kraev.com.naumentest.R;
 import kraev.com.naumentest.content.Computer;
 
 /**
- * Created by qbai on 13.05.2017.
+ * Created by Vladimir Kraev
  */
 
 public class ComputerHolder extends RecyclerView.ViewHolder {

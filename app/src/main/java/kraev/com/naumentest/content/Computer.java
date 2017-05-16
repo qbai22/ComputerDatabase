@@ -1,19 +1,19 @@
 package kraev.com.naumentest.content;
 
 /**
- * Created by qbai on 10.05.2017.
+ * Created by Vladimir Kraev
  */
 
 public class Computer {
-    String id;
+    int id;
     String name;
     Company company;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
