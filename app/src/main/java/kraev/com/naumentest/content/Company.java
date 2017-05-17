@@ -5,7 +5,6 @@ package kraev.com.naumentest.content;
  */
 
 public class Company {
-
     String id;
     String name;
 
