@@ -49,7 +49,7 @@ public class InfoPresenter {
 
         mRepository.similarModels(id)
                 .flatMap(Observable::fromIterable)
-                .subscribe(mView::showSimilar);
+                .subscribe(mView::showSimilar, throwable -> mView.showError());
 
     }
 
