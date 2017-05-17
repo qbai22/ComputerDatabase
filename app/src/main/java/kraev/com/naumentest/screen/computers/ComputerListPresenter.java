@@ -58,6 +58,7 @@ class ComputerListPresenter {
                 })
                 .map(ComputersResponse::getComputers)
                 .subscribe(mView::showComputers, throwable -> mView.showError());
+
     }
 
     void itemClicked(@NonNull Computer computer) {

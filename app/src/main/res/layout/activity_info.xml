@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout
-    android:background="@color/primary_light"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/primary_light">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/info_toolbar"
@@ -24,8 +24,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/info_toolbar">
 
-
-
         <RelativeLayout
             android:id="@+id/info_container"
             android:layout_width="match_parent"
@@ -33,49 +31,78 @@
 
             <android.support.v7.widget.CardView
                 android:id="@+id/main_info_card_view"
-                android:layout_margin="4dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:id="@+id/main_info_linear_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_margin="4dp">
 
-                <TextView
-                    android:id="@+id/info_company_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="16dp"
-                    android:textSize="18sp"
-                    android:visibility="gone"
-                    tools:text="Microsystems Altair Company"/>
-
-                <TextView
-                    android:id="@+id/info_description_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="16dp"
-                    android:ellipsize="end"
-                    android:maxLines="3"
-                    android:textSize="18sp"
-                    android:visibility="gone"
-                    tools:text="@string/lorem_ipsum"/>
-
-                <ImageView
-                    android:id="@+id/info_image_view"
+                <LinearLayout
+                    android:id="@+id/main_info_linear_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:visibility="gone"/>
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-            </LinearLayout>
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/info_company_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/info_company_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/primary_text"
+                            android:textSize="16sp"
+                            tools:text="Microsystems Altair Company"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/company_text"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="14sp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/info_description_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/info_description_text_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="3"
+                            android:textColor="@color/primary_text"
+                            android:textSize="16sp"
+                            tools:text="@string/lorem_ipsum"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/description_text"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="14sp"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/info_image_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
             </android.support.v7.widget.CardView>
+
             <android.support.v7.widget.CardView
                 android:id="@+id/similar_items_card"
                 android:layout_width="match_parent"
@@ -92,7 +119,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="16dp"
+                    android:visibility="gone">
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>

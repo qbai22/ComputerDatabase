@@ -50,6 +50,12 @@ public class InfoActivity extends AppCompatActivity
     @BindView(R.id.info_progressBar)
     ProgressBar mProgressBar;
 
+    @BindView(R.id.info_company_container)
+    LinearLayout mCompanyContainer;
+
+    @BindView(R.id.info_description_container)
+    LinearLayout mDescriptionContainer;
+
     @BindView(R.id.similar_items_linear_layout)
     LinearLayout mSimilarsLinearLayout;
 
@@ -98,13 +104,13 @@ public class InfoActivity extends AppCompatActivity
 
     @Override
     public void updateCompany(String companyName) {
-        mCompanyTextView.setVisibility(View.VISIBLE);
+        mCompanyContainer.setVisibility(View.VISIBLE);
         mCompanyTextView.setText(companyName);
     }
 
     @Override
     public void updateDescription(String description) {
-        mDescriptionTextView.setVisibility(View.VISIBLE);
+        mDescriptionContainer.setVisibility(View.VISIBLE);
         mDescriptionTextView.setText(description);
     }
 
@@ -114,8 +120,10 @@ public class InfoActivity extends AppCompatActivity
         Glide.with(this).load(imageUrl).into(mImageView);
     }
 
+    //динамическое заполнение похожими моделями в зависимости от ответа сервера
     @Override
     public void showSimilar(SimilarModelsResponse similarItem) {
+        mSimilarsLinearLayout.setVisibility(View.VISIBLE);
         SimilarTextView similarView = new SimilarTextView(this, similarItem.getId(), similarItem.getName());
         similarView.setOnClickListener(v -> onSimilarClick(similarItem.getId()));
         mSimilarsLinearLayout.addView(similarView);
@@ -123,6 +131,7 @@ public class InfoActivity extends AppCompatActivity
 
     @Override
     public void onSimilarClick(int id) {
+        mSimilarsLinearLayout.setVisibility(View.GONE);
         mPresenter.getItemCard(id);
     }
 

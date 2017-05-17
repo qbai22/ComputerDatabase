@@ -19,6 +19,8 @@
     </android.support.v7.widget.Toolbar>
 
     <android.support.v7.widget.RecyclerView
+        android:paddingTop="4dp"
+        android:clipToPadding="false"
         android:layout_below="@+id/list_toolbar"
         android:id="@+id/computers_list_recycler_view"
         android:layout_width="match_parent"
