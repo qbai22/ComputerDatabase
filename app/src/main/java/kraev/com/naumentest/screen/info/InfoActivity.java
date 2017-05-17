@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -71,37 +72,46 @@ public class InfoActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
         ButterKnife.bind(this);
+
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mId = getIntent().getIntExtra(ITEM_ID, 1);
         AppDelegate.getAppComponent().injectInfoActivity(this);
         mPresenter = new InfoPresenter(this, mRepository);
         mPresenter.getItemCard(mId);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home){
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
-    public void showInfo(@NonNull String modelName,
-                         @Nullable String company,
-                         @Nullable String description,
-                         @Nullable String imageUrl) {
+    public void updateToolbar(String computerName) {
+        getSupportActionBar().setTitle(computerName);
+    }
 
-        getSupportActionBar().setTitle(modelName);
+    @Override
+    public void updateCompany(String companyName) {
+        mCompanyTextView.setVisibility(View.VISIBLE);
+        mCompanyTextView.setText(companyName);
+    }
 
-        if (company != null) {
-            mCompanyTextView.setVisibility(View.VISIBLE);
-            mCompanyTextView.setText(company);
-        }
+    @Override
+    public void updateDescription(String description) {
+        mDescriptionTextView.setVisibility(View.VISIBLE);
+        mDescriptionTextView.setText(description);
+    }
 
-        if (description != null) {
-            mDescriptionTextView.setVisibility(View.VISIBLE);
-            mDescriptionTextView.setText(description);
-        }
-
-        if (imageUrl != null) {
-            mImageView.setVisibility(View.VISIBLE);
-            Glide.with(this).load(imageUrl).into(mImageView);
-        }
-
+    @Override
+    public void updateImage(String imageUrl) {
+        mImageView.setVisibility(View.VISIBLE);
+        Glide.with(this).load(imageUrl).into(mImageView);
     }
 
     @Override
@@ -117,8 +127,8 @@ public class InfoActivity extends AppCompatActivity
     }
 
     @Override
-    public void showCard(int id) {
-
+    public void clearSpace() {
+        mSimilarsLinearLayout.removeAllViews();
     }
 
 

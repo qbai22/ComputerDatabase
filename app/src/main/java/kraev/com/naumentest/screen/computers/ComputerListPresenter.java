@@ -10,63 +10,62 @@ import kraev.com.naumentest.repository.ComputersRepository;
  * Created by Vladimir Kraev
  */
 
-public class ComputerListPresenter {
+class ComputerListPresenter {
 
     private final static String TAG = "ComputerListPresenter";
 
     private final ComputerListView mView;
     private final ComputersRepository mRepository;
 
-    public ComputerListPresenter(@NonNull ComputerListView view,
-                                 @NonNull ComputersRepository repository) {
+    ComputerListPresenter(@NonNull ComputerListView view,
+                          @NonNull ComputersRepository repository) {
         mView = view;
         mRepository = repository;
     }
 
-    public void init() {
+    void init() {
         int page = mRepository.getCurrentPage();
-        int total = mRepository.getTotalPages();
-        mView.updatePages(page, total);
-        loadList(page);
+        loadPage(page);
     }
 
-    public void onNext(){
+    void onNext() {
         int page = mRepository.getCurrentPage();
         int total = mRepository.getTotalPages();
+        if (page >= total - 1) return; //мы на последней странице
         page++;
-        mRepository.setCurrentPage(page);
-        mView.updatePages(page, total);
-        loadList(page);
+        loadPage(page);
     }
 
-    public void onPrevious(){
+    void onPrevious() {
         int page = mRepository.getCurrentPage();
-        int total = mRepository.getTotalPages();
-        if(page == 0) return;
+        if (page == 0) return; //мы на первой странице странице
         page--;
-        mRepository.setCurrentPage(page);
-        mView.updatePages(page, total);
-        loadList(page);
+        loadPage(page);
     }
 
-    private void loadList(int page){
+    private void loadPage(int page) {
+
         mRepository.computersList(page)
                 .doOnSubscribe(disposable -> mView.showProgress())
                 .doOnTerminate(mView::hideProgress)
                 .map(computersResponse -> {
-                    mRepository.setTotalPages(calculateTotalPages(computersResponse.getTotalItems()));
+                    int currentPage = computersResponse.getPage();
+                    int totalPages = calculateTotalPages(computersResponse.getTotalItems());
+                    mRepository.setCurrentPage(currentPage);
+                    mRepository.setTotalPages(totalPages); //обновляем значение если база увеличилась
+                    mView.updatePages(currentPage + 1, totalPages); //добавляем единицу чтобы нумерация не шла с 0
                     return computersResponse;
                 })
                 .map(ComputersResponse::getComputers)
                 .subscribe(mView::showComputers, throwable -> mView.showError());
     }
 
-    public void itemClicked(@NonNull Computer computer) {
+    void itemClicked(@NonNull Computer computer) {
         mView.navigateToInfoActivity(computer.getId());
     }
 
     private int calculateTotalPages(int totalItems) {
-        if (totalItems % 10 == 0) return totalItems / 10;
+        if (totalItems % 10 == 0) return (totalItems / 10);
         else return (totalItems / 10) + 1;
     }
 

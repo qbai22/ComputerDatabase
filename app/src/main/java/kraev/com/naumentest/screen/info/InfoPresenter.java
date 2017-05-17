@@ -1,15 +1,9 @@
 package kraev.com.naumentest.screen.info;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import kraev.com.naumentest.content.Company;
-import kraev.com.naumentest.content.InfoResponse;
-import kraev.com.naumentest.content.SimilarModelsResponse;
 import kraev.com.naumentest.repository.ComputersRepository;
 
 /**
@@ -23,25 +17,35 @@ public class InfoPresenter {
     private final InfoView mView;
     private final ComputersRepository mRepository;
 
-    public InfoPresenter(@NonNull InfoView view, @NonNull ComputersRepository repository) {
+    InfoPresenter(@NonNull InfoView view, @NonNull ComputersRepository repository) {
         mView = view;
         mRepository = repository;
     }
 
-    public void getItemCard(int id){
+    void getItemCard(int id) {
+
+        mView.clearSpace();
 
         mRepository.info(id)
                 .doOnSubscribe(disposable -> mView.showProgress())
                 .doOnTerminate(mView::hideProgress)
                 .subscribe(infoResponse -> {
-                    String name = infoResponse.getName();
-                    Company company = infoResponse.getCompany();
-                    String companyName = null;
-                    if(company != null) companyName = company.getName();
-                    String description = infoResponse.getDescription();
-                    String url = infoResponse.getImageUrl();
-                    mView.showInfo(name,companyName,description,url);
-                });
+                            String name = infoResponse.getName();
+                            mView.updateToolbar(name);
+                            Company company = infoResponse.getCompany();
+                            if (company != null) {
+                                mView.updateCompany(company.getName());
+                            }
+                            String description = infoResponse.getDescription();
+                            if (description != null) {
+                                mView.updateDescription(description);
+                            }
+                            String url = infoResponse.getImageUrl();
+                            if (url != null) {
+                                mView.updateImage(url);
+                            }
+                        },
+                        throwable -> mView.showError());
 
         mRepository.similarModels(id)
                 .flatMap(Observable::fromIterable)

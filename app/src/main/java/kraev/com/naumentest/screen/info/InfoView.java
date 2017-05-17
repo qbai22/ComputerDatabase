@@ -12,10 +12,14 @@ import kraev.com.naumentest.screen.general.ProgressView;
 
 public interface InfoView extends ProgressView {
 
-    void showInfo(@NonNull String modelName,
-                  @Nullable String company,
-                  @Nullable String description,
-                  @Nullable String imageUrl);
+
+    void updateToolbar(String computerName);
+
+    void updateCompany(String companyName);
+
+    void updateDescription(String description);
+
+    void updateImage(String imageUrl);
 
     void showError();
 
@@ -23,5 +27,6 @@ public interface InfoView extends ProgressView {
 
     void onSimilarClick(int id);
 
-    void showCard(int id);
+    void clearSpace();
+
 }

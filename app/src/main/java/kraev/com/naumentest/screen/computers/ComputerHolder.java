@@ -3,6 +3,7 @@ package kraev.com.naumentest.screen.computers;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -22,6 +23,9 @@ public class ComputerHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.item_company_text_view)
     TextView mCompanyTextView;
 
+    @BindView(R.id.item_company_linear_container)
+    LinearLayout mCompanyContainer;
+
     public ComputerHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
@@ -31,7 +35,7 @@ public class ComputerHolder extends RecyclerView.ViewHolder {
         mNameTextView.setText(computer.getName());
         boolean hasCompany = computer.getCompany() != null;
         if(hasCompany) {
-            mCompanyTextView.setVisibility(View.VISIBLE);
+            mCompanyContainer.setVisibility(View.VISIBLE);
             mCompanyTextView.setText(computer.getCompany().getName());
         }
     }

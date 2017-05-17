@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
     android:orientation="vertical"
     app:cardCornerRadius="@dimen/cardview_default_radius">
 
@@ -14,26 +15,53 @@
         android:orientation="vertical"
         android:padding="@dimen/default_padding">
 
-        <TextView
-            android:id="@+id/item_computer_name_text_view"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/item_name_linear_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            tools:text="Altair 8800"/>
+            android:orientation="vertical">
 
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/item_company_text_view"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/item_computer_name_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary_text"
+                android:textSize="16sp"
+                tools:text="Altair 8800"/>
+
+            <TextView
+                android:textColor="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/computer_name_text"
+                android:textSize="14sp"
+                tools:text="Computer name"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/item_company_linear_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            tools:text="Micro Instrumentation and Telemetry Systems"/>
-<!--
-        <TextView
-            android:id="@+id/item_introduced_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"/>-->
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/item_company_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary_text"
+                android:textSize="16sp"
+                tools:text="Micro Instrumentation and Telemetry Systems"/>
+
+            <TextView
+                android:textColor="@color/colorAccent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/company_text"
+                android:textSize="14sp"/>
+        </LinearLayout>
 
     </LinearLayout>
 
