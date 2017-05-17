@@ -9,7 +9,7 @@ Naumen test exercise
 Использованные библиотеки : <br />
 RxJava, Dagger2, Butterknife, Glide, Retrofit. <br />
 
-![alt-tag](https://cloud.githubusercontent.com/assets/14185390/26159828/11f8ba74-3b39-11e7-9ba5-96ea4974bab5.png)
+![alt-tag](https://cloud.githubusercontent.com/assets/14185390/26160142/e3170fca-3b39-11e7-983b-0aa75713525d.png)
 
 
 
