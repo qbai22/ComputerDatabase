@@ -56,16 +56,19 @@ public class InfoActivity extends AppCompatActivity
     @BindView(R.id.info_description_container)
     LinearLayout mDescriptionContainer;
 
+    @BindView(R.id.info_similar_container)
+    LinearLayout mSimilarContainer;
+
     @BindView(R.id.similar_items_linear_layout)
     LinearLayout mSimilarsLinearLayout;
+
+
 
     @Inject
     ComputersRepository mRepository;
 
     private int mId;
     private InfoPresenter mPresenter;
-
-
 
     public static void start(@NonNull Activity activity, int id) {
         Intent intent = new Intent(activity, InfoActivity.class);
@@ -123,7 +126,7 @@ public class InfoActivity extends AppCompatActivity
     //динамическое заполнение похожими моделями в зависимости от ответа сервера
     @Override
     public void showSimilar(SimilarModelsResponse similarItem) {
-        mSimilarsLinearLayout.setVisibility(View.VISIBLE);
+        mSimilarContainer.setVisibility(View.VISIBLE);
         SimilarTextView similarView = new SimilarTextView(this, similarItem.getId(), similarItem.getName());
         similarView.setOnClickListener(v -> onSimilarClick(similarItem.getId()));
         mSimilarsLinearLayout.addView(similarView);
@@ -131,7 +134,7 @@ public class InfoActivity extends AppCompatActivity
 
     @Override
     public void onSimilarClick(int id) {
-        mSimilarsLinearLayout.setVisibility(View.GONE);
+        mSimilarContainer.setVisibility(View.GONE);
         mPresenter.getItemCard(id);
     }
 

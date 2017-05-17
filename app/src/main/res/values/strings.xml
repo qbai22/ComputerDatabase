@@ -10,4 +10,5 @@
     <string name="computer_name_text">Computer name</string>
     <string name="company_text">Company</string>
     <string name="description_text">Description</string>
+    <string name="similar_items_hint">You mast be looking for:</string>
 </resources>
