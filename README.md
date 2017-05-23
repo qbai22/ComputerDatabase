@@ -1,5 +1,5 @@
-# NaumenTest
-Naumen test exercise
+# Computer Database
+test exercise
 
 Приложение построено согласно принципам Model View Presenter архитектуры. <br />
 Дизайн выполнен в согласии с Material design guidelines. <br />
